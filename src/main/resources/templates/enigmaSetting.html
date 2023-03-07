@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>enigma setting</title>
+</head>
+<body>
+
+
+	<header>setting page</header>
+	
+	
+	<form method="post" th:object="${settingEnigmaForm}" th:action="@{/enigma/insert}">
+		
+		<h3>router choice</h3>
+		<label for = "router1">router1</label>
+		<select id="router1" th:field="*{router1}" th:value="${settingEnigma.router[0]}">
+			<option value=null></option>
+			<option value=1>A</option>
+			<option value=2>B</option>
+			<option value=3>C</option>
+			<option value=4>D</option>
+			<option value=5>E</option>
+		</select>
+		
+		<label for = "router2">router2</label>
+		<select id="router2" th:field="*{router2}" th:value="${settingEnigma.router[1]}">
+			<option value=null></option>
+			<option value=1>A</option>
+			<option value=2>B</option>
+			<option value=3>C</option>
+			<option value=4>D</option>
+			<option value=5>E</option>
+		</select>
+		
+		<label for = "router3" >router3</label>
+		<select id="router3" th:field="*{router3}" th:value="${settingEnigma.router[2]}">
+			<option value=null></option>
+			<option value=1>A</option>
+			<option value=2>B</option>
+			<option value=3>C</option>
+			<option value=4>D</option>
+			<option value=5>E</option>
+		</select>
+		<br/>
+		
+		
+		<h3>router start point</h3>
+		
+		<label for="router1StartPoint">router1</label>
+		<input type="number" min="1" max="26" id="router1StartPoint" name="router1StartPoint" th:field="*{routerStartPoint1}"/><br/>
+		
+		<label for="router2StartPoint">router2</label>
+		<input type="number" min="1" max="26" id="router2StartPoint" name="router2StartPoint" th:field="*{routerStartPoint2}"/><br/>
+		
+		<label for="router3StartPoint">router3</label>
+		<input type="number" min="1" max="26" id="router3StartPoint" name="router3StartPoint" th:field="*{routerStartPoint3}"/><br/>
+		
+		
+		<h3>reverse router choice</h3>
+		
+		<label for="reverseRouter">reverse router</label>
+		<select id="reverseRouter" name="reverseRouter" th:field="*{reverseRouter}">
+			<option value=1>F</option>
+			<option value=2>G</option>
+		</select><br/>
+		
+		<h3>plug board</h3>
+		
+		<label for="a">A----</label>
+		<select id="a" th:field="*{plugBoard[0]}">
+			<option value=null></option>
+			<option value=1>A</option>		
+			<option value=2>B</option>		
+			<option value=3>C</option>		
+			<option value=4>D</option>		
+			<option value=5>E</option>		
+			<option value=6>F</option>		
+			<option value=7>G</option>		
+			<option value=8>H</option>		
+			<option value=9>I</option>		
+			<option value=10>J</option>		
+			<option value=11>K</option>		
+			<option value=12>L</option>		
+			<option value=13>M</option>		
+			<option value=14>N</option>		
+			<option value=15>O</option>		
+			<option value=16>P</option>		
+			<option value=17>Q</option>		
+			<option value=18>R</option>		
+			<option value=19>S</option>		
+			<option value=20>T</option>		
+			<option value=21>U</option>		
+			<option value=22>V</option>		
+			<option value=23>W</option>		
+			<option value=24>X</option>		
+			<option value=25>Y</option>		
+			<option value=26>Z</option>		
+		</select>
+		
+		
+		
+		<label for="b">B----</label>
+		<select id="b" th:field="*{plugBoard[1]}">
+			<option value=null></option>
+			<option value=1>A</option>		
+			<option value=2>B</option>		
+			<option value=3>C</option>		
+			<option value=4>D</option>		
+			<option value=5>E</option>		
+			<option value=6>F</option>		
+			<option value=7>G</option>		
+			<option value=8>H</option>		
+			<option value=9>I</option>		
+			<option value=10>J</option>		
+			<option value=11>K</option>		
+			<option value=12>L</option>		
+			<option value=13>M</option>		
+			<option value=14>N</option>		
+			<option value=15>O</option>		
+			<option value=16>P</option>		
+			<option value=17>Q</option>		
+			<option value=18>R</option>		
+			<option value=19>S</option>		
+			<option value=20>T</option>		
+			<option value=21>U</option>		
+			<option value=22>V</option>		
+			<option value=23>W</option>		
+			<option value=24>X</option>		
+			<option value=25>Y</option>		
+			<option value=26>Z</option>	
+		</select>
+		
+		<label for="c">C----</label>
+		<select id="c" th:field="*{plugBoard[2]}">
+		<option value=null></option>
+			<option value=1>A</option>		
+			<option value=2>B</option>		
+			<option value=3>C</option>		
+			<option value=4>D</option>		
+			<option value=5>E</option>		
+			<option value=6>F</option>		
+			<option value=7>G</option>		
+			<option value=8>H</option>		
+			<option value=9>I</option>		
+			<option value=10>J</option>		
+			<option value=11>K</option>		
+			<option value=12>L</option>		
+			<option value=13>M</option>		
+			<option value=14>N</option>		
+			<option value=15>O</option>		
+			<option value=16>P</option>		
+			<option value=17>Q</option>		
+			<option value=18>R</option>		
+			<option value=19>S</option>		
+			<option value=20>T</option>		
+			<option value=21>U</option>		
+			<option value=22>V</option>		
+			<option value=23>W</option>		
+			<option value=24>X</option>		
+			<option value=25>Y</option>		
+			<option value=26>Z</option>		
+		</select>
+		
+		<label for="d">D----</label>
+		<select id="d" th:field="*{plugBoard[3]}">
+		<option value=null></option>
+			<option value=1>A</option>		
+			<option value=2>B</option>		
+			<option value=3>C</option>		
+			<option value=4>D</option>		
+			<option value=5>E</option>		
+			<option value=6>F</option>		
+			<option value=7>G</option>		
+			<option value=8>H</option>		
+			<option value=9>I</option>		
+			<option value=10>J</option>		
+			<option value=11>K</option>		
+			<option value=12>L</option>		
+			<option value=13>M</option>		
+			<option value=14>N</option>		
+			<option value=15>O</option>		
+			<option value=16>P</option>		
+			<option value=17>Q</option>		
+			<option value=18>R</option>		
+			<option value=19>S</option>		
+			<option value=20>T</option>		
+			<option value=21>U</option>		
+			<option value=22>V</option>		
+			<option value=23>W</option>		
+			<option value=24>X</option>		
+			<option value=25>Y</option>		
+			<option value=26>Z</option>		
+		</select>
+		
+		<label for="e">E----</label>
+		<select id="e" th:field="*{plugBoard[4]}">
+		<option value=null></option>
+			<option value=1>A</option>		
+			<option value=2>B</option>		
+			<option value=3>C</option>		
+			<option value=4>D</option>		
+			<option value=5>E</option>		
+			<option value=6>F</option>		
+			<option value=7>G</option>		
+			<option value=8>H</option>		
+			<option value=9>I</option>		
+			<option value=10>J</option>		
+			<option value=11>K</option>		
+			<option value=12>L</option>		
+			<option value=13>M</option>		
+			<option value=14>N</option>		
+			<option value=15>O</option>		
+			<option value=16>P</option>		
+			<option value=17>Q</option>		
+			<option value=18>R</option>		
+			<option value=19>S</option>		
+			<option value=20>T</option>		
+			<option value=21>U</option>		
+			<option value=22>V</option>		
+			<option value=23>W</option>		
+			<option value=24>X</option>		
+			<option value=25>Y</option>		
+			<option value=26>Z</option>		
+		</select>
+		<br/>
+		
+		<label for="f">F----</label>
+		<select id="f" th:field="*{plugBoard[5]}">
+		<option value=null></option>
+			<option value=1>A</option>		
+			<option value=2>B</option>		
+			<option value=3>C</option>		
+			<option value=4>D</option>		
+			<option value=5>E</option>		
+			<option value=6>F</option>		
+			<option value=7>G</option>		
+			<option value=8>H</option>		
+			<option value=9>I</option>		
+			<option value=10>J</option>		
+			<option value=11>K</option>		
+			<option value=12>L</option>		
+			<option value=13>M</option>		
+			<option value=14>N</option>		
+			<option value=15>O</option>		
+			<option value=16>P</option>		
+			<option value=17>Q</option>		
+			<option value=18>R</option>		
+			<option value=19>S</option>		
+			<option value=20>T</option>		
+			<option value=21>U</option>		
+			<option value=22>V</option>		
+			<option value=23>W</option>		
+			<option value=24>X</option>		
+			<option value=25>Y</option>		
+			<option value=26>Z</option>		
+		</select>
+		
+		<label for="g">G----</label>
+		<select id="g" th:field="*{plugBoard[6]}">
+		<option value=null></option>
+			<option value=1>A</option>		
+			<option value=2>B</option>		
+			<option value=3>C</option>		
+			<option value=4>D</option>		
+			<option value=5>E</option>		
+			<option value=6>F</option>		
+			<option value=7>G</option>		
+			<option value=8>H</option>		
+			<option value=9>I</option>		
+			<option value=10>J</option>		
+			<option value=11>K</option>		
+			<option value=12>L</option>		
+			<option value=13>M</option>		
+			<option value=14>N</option>		
+			<option value=15>O</option>		
+			<option value=16>P</option>		
+			<option value=17>Q</option>		
+			<option value=18>R</option>		
+			<option value=19>S</option>		
+			<option value=20>T</option>		
+			<option value=21>U</option>		
+			<option value=22>V</option>		
+			<option value=23>W</option>		
+			<option value=24>X</option>		
+			<option value=25>Y</option>		
+			<option value=26>Z</option>		
+		</select>
+		
+		<label for="h">H----</label>
+		<select id="h" th:field="*{plugBoard[7]}">
+		<option value=null></option>
+			<option value=1>A</option>		
+			<option value=2>B</option>		
+			<option value=3>C</option>		
+			<option value=4>D</option>		
+			<option value=5>E</option>		
+			<option value=6>F</option>		
+			<option value=7>G</option>		
+			<option value=8>H</option>		
+			<option value=9>I</option>		
+			<option value=10>J</option>		
+			<option value=11>K</option>		
+			<option value=12>L</option>		
+			<option value=13>M</option>		
+			<option value=14>N</option>		
+			<option value=15>O</option>		
+			<option value=16>P</option>		
+			<option value=17>Q</option>		
+			<option value=18>R</option>		
+			<option value=19>S</option>		
+			<option value=20>T</option>		
+			<option value=21>U</option>		
+			<option value=22>V</option>		
+			<option value=23>W</option>		
+			<option value=24>X</option>		
+			<option value=25>Y</option>		
+			<option value=26>Z</option>		
+		</select>
+		
+		<label for="i">I----</label>
+		<select id="i" th:field="*{plugBoard[8]}">
+		<option value=null></option>
+			<option value=1>A</option>		
+			<option value=2>B</option>		
+			<option value=3>C</option>		
+			<option value=4>D</option>		
+			<option value=5>E</option>		
+			<option value=6>F</option>		
+			<option value=7>G</option>		
+			<option value=8>H</option>		
+			<option value=9>I</option>		
+			<option value=10>J</option>		
+			<option value=11>K</option>		
+			<option value=12>L</option>		
+			<option value=13>M</option>		
+			<option value=14>N</option>		
+			<option value=15>O</option>		
+			<option value=16>P</option>		
+			<option value=17>Q</option>		
+			<option value=18>R</option>		
+			<option value=19>S</option>		
+			<option value=20>T</option>		
+			<option value=21>U</option>		
+			<option value=22>V</option>		
+			<option value=23>W</option>		
+			<option value=24>X</option>		
+			<option value=25>Y</option>		
+			<option value=26>Z</option>		
+		</select>
+		
+		<label for="j">J----</label>
+		<select id="j" th:field="*{plugBoard[9]}">
+		<option value=null></option>
+			<option value=1>A</option>		
+			<option value=2>B</option>		
+			<option value=3>C</option>		
+			<option value=4>D</option>		
+			<option value=5>E</option>		
+			<option value=6>F</option>		
+			<option value=7>G</option>		
+			<option value=8>H</option>		
+			<option value=9>I</option>		
+			<option value=10>J</option>		
+			<option value=11>K</option>		
+			<option value=12>L</option>		
+			<option value=13>M</option>		
+			<option value=14>N</option>		
+			<option value=15>O</option>		
+			<option value=16>P</option>		
+			<option value=17>Q</option>		
+			<option value=18>R</option>		
+			<option value=19>S</option>		
+			<option value=20>T</option>		
+			<option value=21>U</option>		
+			<option value=22>V</option>		
+			<option value=23>W</option>		
+			<option value=24>X</option>		
+			<option value=25>Y</option>		
+			<option value=26>Z</option>		
+		</select>
+		<br/>
+		
+		<label for="k">K----</label>
+		<select id="k" th:field="*{plugBoard[10]}">
+		<option value=null></option>
+			<option value=1>A</option>		
+			<option value=2>B</option>		
+			<option value=3>C</option>		
+			<option value=4>D</option>		
+			<option value=5>E</option>		
+			<option value=6>F</option>		
+			<option value=7>G</option>		
+			<option value=8>H</option>		
+			<option value=9>I</option>		
+			<option value=10>J</option>		
+			<option value=11>K</option>		
+			<option value=12>L</option>		
+			<option value=13>M</option>		
+			<option value=14>N</option>		
+			<option value=15>O</option>		
+			<option value=16>P</option>		
+			<option value=17>Q</option>		
+			<option value=18>R</option>		
+			<option value=19>S</option>		
+			<option value=20>T</option>		
+			<option value=21>U</option>		
+			<option value=22>V</option>		
+			<option value=23>W</option>		
+			<option value=24>X</option>		
+			<option value=25>Y</option>		
+			<option value=26>Z</option>		
+		</select>
+		
+		<label for="l">L----</label>
+		<select id="l" th:field="*{plugBoard[11]}">
+		<option value=null></option>
+			<option value=1>A</option>		
+			<option value=2>B</option>		
+			<option value=3>C</option>		
+			<option value=4>D</option>		
+			<option value=5>E</option>		
+			<option value=6>F</option>		
+			<option value=7>G</option>		
+			<option value=8>H</option>		
+			<option value=9>I</option>		
+			<option value=10>J</option>		
+			<option value=11>K</option>		
+			<option value=12>L</option>		
+			<option value=13>M</option>		
+			<option value=14>N</option>		
+			<option value=15>O</option>		
+			<option value=16>P</option>		
+			<option value=17>Q</option>		
+			<option value=18>R</option>		
+			<option value=19>S</option>		
+			<option value=20>T</option>		
+			<option value=21>U</option>		
+			<option value=22>V</option>		
+			<option value=23>W</option>		
+			<option value=24>X</option>		
+			<option value=25>Y</option>		
+			<option value=26>Z</option>		
+		</select>
+		
+		<label for="m">M----</label>
+		<select id="m" th:field="*{plugBoard[12]}">
+		<option value=null></option>
+			<option value=1>A</option>		
+			<option value=2>B</option>		
+			<option value=3>C</option>		
+			<option value=4>D</option>		
+			<option value=5>E</option>		
+			<option value=6>F</option>		
+			<option value=7>G</option>		
+			<option value=8>H</option>		
+			<option value=9>I</option>		
+			<option value=10>J</option>		
+			<option value=11>K</option>		
+			<option value=12>L</option>		
+			<option value=13>M</option>		
+			<option value=14>N</option>		
+			<option value=15>O</option>		
+			<option value=16>P</option>		
+			<option value=17>Q</option>		
+			<option value=18>R</option>		
+			<option value=19>S</option>		
+			<option value=20>T</option>		
+			<option value=21>U</option>		
+			<option value=22>V</option>		
+			<option value=23>W</option>		
+			<option value=24>X</option>		
+			<option value=25>Y</option>		
+			<option value=26>Z</option>		
+		</select>
+		
+		<label for="n">N----</label>
+		<select id="n" th:field="*{plugBoard[13]}">
+		<option value=null></option>
+			<option value=1>A</option>		
+			<option value=2>B</option>		
+			<option value=3>C</option>		
+			<option value=4>D</option>		
+			<option value=5>E</option>		
+			<option value=6>F</option>		
+			<option value=7>G</option>		
+			<option value=8>H</option>		
+			<option value=9>I</option>		
+			<option value=10>J</option>		
+			<option value=11>K</option>		
+			<option value=12>L</option>		
+			<option value=13>M</option>		
+			<option value=14>N</option>		
+			<option value=15>O</option>		
+			<option value=16>P</option>		
+			<option value=17>Q</option>		
+			<option value=18>R</option>		
+			<option value=19>S</option>		
+			<option value=20>T</option>		
+			<option value=21>U</option>		
+			<option value=22>V</option>		
+			<option value=23>W</option>		
+			<option value=24>X</option>		
+			<option value=25>Y</option>		
+			<option value=26>Z</option>		
+		</select>
+		
+		<label for="o">O----</label>
+		<select id="o" th:field="*{plugBoard[14]}">
+		<option value=null></option>
+			<option value=1>A</option>		
+			<option value=2>B</option>		
+			<option value=3>C</option>		
+			<option value=4>D</option>		
+			<option value=5>E</option>		
+			<option value=6>F</option>		
+			<option value=7>G</option>		
+			<option value=8>H</option>		
+			<option value=9>I</option>		
+			<option value=10>J</option>		
+			<option value=11>K</option>		
+			<option value=12>L</option>		
+			<option value=13>M</option>		
+			<option value=14>N</option>		
+			<option value=15>O</option>		
+			<option value=16>P</option>		
+			<option value=17>Q</option>		
+			<option value=18>R</option>		
+			<option value=19>S</option>		
+			<option value=20>T</option>		
+			<option value=21>U</option>		
+			<option value=22>V</option>		
+			<option value=23>W</option>		
+			<option value=24>X</option>		
+			<option value=25>Y</option>		
+			<option value=26>Z</option>		
+		</select>
+		<br/>
+		
+		<label for="p">P----</label>
+		<select id="p" th:field="*{plugBoard[15]}">
+		<option value=null></option>
+			<option value=1>A</option>		
+			<option value=2>B</option>		
+			<option value=3>C</option>		
+			<option value=4>D</option>		
+			<option value=5>E</option>		
+			<option value=6>F</option>		
+			<option value=7>G</option>		
+			<option value=8>H</option>		
+			<option value=9>I</option>		
+			<option value=10>J</option>		
+			<option value=11>K</option>		
+			<option value=12>L</option>		
+			<option value=13>M</option>		
+			<option value=14>N</option>		
+			<option value=15>O</option>		
+			<option value=16>P</option>		
+			<option value=17>Q</option>		
+			<option value=18>R</option>		
+			<option value=19>S</option>		
+			<option value=20>T</option>		
+			<option value=21>U</option>		
+			<option value=22>V</option>		
+			<option value=23>W</option>		
+			<option value=24>X</option>		
+			<option value=25>Y</option>		
+			<option value=26>Z</option>		
+		</select>
+		
+		<label for="q">Q----</label>
+		<select id="q" th:field="*{plugBoard[16]}">
+		<option value=null></option>
+			<option value=1>A</option>		
+			<option value=2>B</option>		
+			<option value=3>C</option>		
+			<option value=4>D</option>		
+			<option value=5>E</option>		
+			<option value=6>F</option>		
+			<option value=7>G</option>		
+			<option value=8>H</option>		
+			<option value=9>I</option>		
+			<option value=10>J</option>		
+			<option value=11>K</option>		
+			<option value=12>L</option>		
+			<option value=13>M</option>		
+			<option value=14>N</option>		
+			<option value=15>O</option>		
+			<option value=16>P</option>		
+			<option value=17>Q</option>		
+			<option value=18>R</option>		
+			<option value=19>S</option>		
+			<option value=20>T</option>		
+			<option value=21>U</option>		
+			<option value=22>V</option>		
+			<option value=23>W</option>		
+			<option value=24>X</option>		
+			<option value=25>Y</option>		
+			<option value=26>Z</option>		
+		</select>
+		
+		<label for="r">R----</label>
+		<select id="r" th:field="*{plugBoard[17]}">
+		<option value=null></option>
+			<option value=1>A</option>		
+			<option value=2>B</option>		
+			<option value=3>C</option>		
+			<option value=4>D</option>		
+			<option value=5>E</option>		
+			<option value=6>F</option>		
+			<option value=7>G</option>		
+			<option value=8>H</option>		
+			<option value=9>I</option>		
+			<option value=10>J</option>		
+			<option value=11>K</option>		
+			<option value=12>L</option>		
+			<option value=13>M</option>		
+			<option value=14>N</option>		
+			<option value=15>O</option>		
+			<option value=16>P</option>		
+			<option value=17>Q</option>		
+			<option value=18>R</option>		
+			<option value=19>S</option>		
+			<option value=20>T</option>		
+			<option value=21>U</option>		
+			<option value=22>V</option>		
+			<option value=23>W</option>		
+			<option value=24>X</option>		
+			<option value=25>Y</option>		
+			<option value=26>Z</option>		
+		</select>
+		
+		<label for="s">S----</label>
+		<select id="s" th:field="*{plugBoard[18]}">
+		<option value=null></option>
+			<option value=1>A</option>		
+			<option value=2>B</option>		
+			<option value=3>C</option>		
+			<option value=4>D</option>		
+			<option value=5>E</option>		
+			<option value=6>F</option>		
+			<option value=7>G</option>		
+			<option value=8>H</option>		
+			<option value=9>I</option>		
+			<option value=10>J</option>		
+			<option value=11>K</option>		
+			<option value=12>L</option>		
+			<option value=13>M</option>		
+			<option value=14>N</option>		
+			<option value=15>O</option>		
+			<option value=16>P</option>		
+			<option value=17>Q</option>		
+			<option value=18>R</option>		
+			<option value=19>S</option>		
+			<option value=20>T</option>		
+			<option value=21>U</option>		
+			<option value=22>V</option>		
+			<option value=23>W</option>		
+			<option value=24>X</option>		
+			<option value=25>Y</option>		
+			<option value=26>Z</option>		
+		</select>
+		
+		<label for="t">T----</label>
+		<select id="t" th:field="*{plugBoard[19]}">
+		<option value=null></option>
+			<option value=1>A</option>		
+			<option value=2>B</option>		
+			<option value=3>C</option>		
+			<option value=4>D</option>		
+			<option value=5>E</option>		
+			<option value=6>F</option>		
+			<option value=7>G</option>		
+			<option value=8>H</option>		
+			<option value=9>I</option>		
+			<option value=10>J</option>		
+			<option value=11>K</option>		
+			<option value=12>L</option>		
+			<option value=13>M</option>		
+			<option value=14>N</option>		
+			<option value=15>O</option>		
+			<option value=16>P</option>		
+			<option value=17>Q</option>		
+			<option value=18>R</option>		
+			<option value=19>S</option>		
+			<option value=20>T</option>		
+			<option value=21>U</option>		
+			<option value=22>V</option>		
+			<option value=23>W</option>		
+			<option value=24>X</option>		
+			<option value=25>Y</option>		
+			<option value=26>Z</option>		
+		</select>
+		<br/>
+		
+		<label for="u">U----</label>
+		<select id="u" th:field="*{plugBoard[20]}">
+		<option value=null></option>
+			<option value=1>A</option>		
+			<option value=2>B</option>		
+			<option value=3>C</option>		
+			<option value=4>D</option>		
+			<option value=5>E</option>		
+			<option value=6>F</option>		
+			<option value=7>G</option>		
+			<option value=8>H</option>		
+			<option value=9>I</option>		
+			<option value=10>J</option>		
+			<option value=11>K</option>		
+			<option value=12>L</option>		
+			<option value=13>M</option>		
+			<option value=14>N</option>		
+			<option value=15>O</option>		
+			<option value=16>P</option>		
+			<option value=17>Q</option>		
+			<option value=18>R</option>		
+			<option value=19>S</option>		
+			<option value=20>T</option>		
+			<option value=21>U</option>		
+			<option value=22>V</option>		
+			<option value=23>W</option>		
+			<option value=24>X</option>		
+			<option value=25>Y</option>		
+			<option value=26>Z</option>		
+		</select>
+		
+		<label for="v">V----</label>
+		<select id="v" th:field="*{plugBoard[21]}">
+		<option value=null></option>
+			<option value=1>A</option>		
+			<option value=2>B</option>		
+			<option value=3>C</option>		
+			<option value=4>D</option>		
+			<option value=5>E</option>		
+			<option value=6>F</option>		
+			<option value=7>G</option>		
+			<option value=8>H</option>		
+			<option value=9>I</option>		
+			<option value=10>J</option>		
+			<option value=11>K</option>		
+			<option value=12>L</option>		
+			<option value=13>M</option>		
+			<option value=14>N</option>		
+			<option value=15>O</option>		
+			<option value=16>P</option>		
+			<option value=17>Q</option>		
+			<option value=18>R</option>		
+			<option value=19>S</option>		
+			<option value=20>T</option>		
+			<option value=21>U</option>		
+			<option value=22>V</option>		
+			<option value=23>W</option>		
+			<option value=24>X</option>		
+			<option value=25>Y</option>		
+			<option value=26>Z</option>		
+		</select>
+		
+		<label for="w">W----</label>
+		<select id="w" th:field="*{plugBoard[22]}">
+		<option value=null></option>
+			<option value=1>A</option>		
+			<option value=2>B</option>		
+			<option value=3>C</option>		
+			<option value=4>D</option>		
+			<option value=5>E</option>		
+			<option value=6>F</option>		
+			<option value=7>G</option>		
+			<option value=8>H</option>		
+			<option value=9>I</option>		
+			<option value=10>J</option>		
+			<option value=11>K</option>		
+			<option value=12>L</option>		
+			<option value=13>M</option>		
+			<option value=14>N</option>		
+			<option value=15>O</option>		
+			<option value=16>P</option>		
+			<option value=17>Q</option>		
+			<option value=18>R</option>		
+			<option value=19>S</option>		
+			<option value=20>T</option>		
+			<option value=21>U</option>		
+			<option value=22>V</option>		
+			<option value=23>W</option>		
+			<option value=24>X</option>		
+			<option value=25>Y</option>		
+			<option value=26>Z</option>		
+		</select>
+		
+		<label for="x">X----</label>
+		<select id="x" th:field="*{plugBoard[23]}">
+		<option value=null></option>
+			<option value=1>A</option>		
+			<option value=2>B</option>		
+			<option value=3>C</option>		
+			<option value=4>D</option>		
+			<option value=5>E</option>		
+			<option value=6>F</option>		
+			<option value=7>G</option>		
+			<option value=8>H</option>		
+			<option value=9>I</option>		
+			<option value=10>J</option>		
+			<option value=11>K</option>		
+			<option value=12>L</option>		
+			<option value=13>M</option>		
+			<option value=14>N</option>		
+			<option value=15>O</option>		
+			<option value=16>P</option>		
+			<option value=17>Q</option>		
+			<option value=18>R</option>		
+			<option value=19>S</option>		
+			<option value=20>T</option>		
+			<option value=21>U</option>		
+			<option value=22>V</option>		
+			<option value=23>W</option>		
+			<option value=24>X</option>		
+			<option value=25>Y</option>		
+			<option value=26>Z</option>		
+		</select>
+		
+		<label for="y">Y----</label>
+		<select id="y" th:field="*{plugBoard[24]}">
+		<option value=null></option>
+			<option value=1>A</option>		
+			<option value=2>B</option>		
+			<option value=3>C</option>		
+			<option value=4>D</option>		
+			<option value=5>E</option>		
+			<option value=6>F</option>		
+			<option value=7>G</option>		
+			<option value=8>H</option>		
+			<option value=9>I</option>		
+			<option value=10>J</option>		
+			<option value=11>K</option>		
+			<option value=12>L</option>		
+			<option value=13>M</option>		
+			<option value=14>N</option>		
+			<option value=15>O</option>		
+			<option value=16>P</option>		
+			<option value=17>Q</option>		
+			<option value=18>R</option>		
+			<option value=19>S</option>		
+			<option value=20>T</option>		
+			<option value=21>U</option>		
+			<option value=22>V</option>		
+			<option value=23>W</option>		
+			<option value=24>X</option>		
+			<option value=25>Y</option>		
+			<option value=26>Z</option>		
+		</select>
+		<br/>
+		
+		<label for="z">Z----</label>
+		<select id="z" th:field="*{plugBoard[25]}">
+		<option value=null></option>
+			<option value=1>A</option>		
+			<option value=2>B</option>		
+			<option value=3>C</option>		
+			<option value=4>D</option>		
+			<option value=5>E</option>		
+			<option value=6>F</option>		
+			<option value=7>G</option>		
+			<option value=8>H</option>		
+			<option value=9>I</option>		
+			<option value=10>J</option>		
+			<option value=11>K</option>		
+			<option value=12>L</option>		
+			<option value=13>M</option>		
+			<option value=14>N</option>		
+			<option value=15>O</option>		
+			<option value=16>P</option>		
+			<option value=17>Q</option>		
+			<option value=18>R</option>		
+			<option value=19>S</option>		
+			<option value=20>T</option>		
+			<option value=21>U</option>		
+			<option value=22>V</option>		
+			<option value=23>W</option>		
+			<option value=24>X</option>		
+			<option value=25>Y</option>		
+			<option value=26>Z</option>		
+		</select>
+		<br/>
+		
+		
+		
+		
+		<input type="submit" value="change">
+		
+		
+	</form>
+	
+</body>
+</html>

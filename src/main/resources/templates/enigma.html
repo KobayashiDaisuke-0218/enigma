@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<h1>Enigma simulator</h1>
+	
+	
+	<h3><a th:href="@{/enigma/enigmaSetting}">Setting page</a></h3>
+	<p th:if="${checkSetting}" th:text="${checkSetting}" style="color:red"></p>
+	
+	
+	<form th:action="@{/enigma/cryption}" method="post">
+		<label for="sentence">write here</label><br/>
+		<textarea rows="7" cols="50" name="sentence"></textarea><br/>
+		<input type="submit" value="cryption">
+	</form>
+	
+	
+	
+	
+	<h3><a th:href="@{/enigma/check}">List of past data</a></h3>
+	
+	
+	
+</body>
+</html>

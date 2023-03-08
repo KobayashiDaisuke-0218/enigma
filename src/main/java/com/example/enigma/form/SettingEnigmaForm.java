@@ -27,6 +27,7 @@ public class SettingEnigmaForm {
 	private Integer reverseRouter;
 	
 	
+	
 	private Integer[] plugBoard = new Integer[26];
 	
 	

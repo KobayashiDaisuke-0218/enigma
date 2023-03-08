@@ -9,13 +9,15 @@
 
 	<header>setting page</header>
 	
+	<div th:if="${#fields.hasErrors('settingEnigmaForm')}" th:errors="${settingEnigmaForm}"></div>
 	
-	<form method="post" th:object="${settingEnigmaForm}" th:action="@{/enigma/insert}">
+	
+	<form method="post" th:object="${settingEnigmaForm}" th:action="@{/insert}">
 		
 		<h3>router choice</h3>
 		<label for = "router1">router1</label>
-		<select id="router1" th:field="*{router1}" th:value="${settingEnigma.router[0]}">
-			<option value=null></option>
+		<select id="router1" th:field="*{router1}">
+			<option value=0></option>
 			<option value=1>A</option>
 			<option value=2>B</option>
 			<option value=3>C</option>
@@ -24,8 +26,8 @@
 		</select>
 		
 		<label for = "router2">router2</label>
-		<select id="router2" th:field="*{router2}" th:value="${settingEnigma.router[1]}">
-			<option value=null></option>
+		<select id="router2" th:field="*{router2}">
+			<option value=0></option>
 			<option value=1>A</option>
 			<option value=2>B</option>
 			<option value=3>C</option>
@@ -34,8 +36,8 @@
 		</select>
 		
 		<label for = "router3" >router3</label>
-		<select id="router3" th:field="*{router3}" th:value="${settingEnigma.router[2]}">
-			<option value=null></option>
+		<select id="router3" th:field="*{router3}">
+			<option value=0></option>
 			<option value=1>A</option>
 			<option value=2>B</option>
 			<option value=3>C</option>
@@ -69,7 +71,7 @@
 		
 		<label for="a">A----</label>
 		<select id="a" th:field="*{plugBoard[0]}">
-			<option value=null></option>
+			<option value=0></option>
 			<option value=1>A</option>		
 			<option value=2>B</option>		
 			<option value=3>C</option>		
@@ -99,10 +101,9 @@
 		</select>
 		
 		
-		
 		<label for="b">B----</label>
 		<select id="b" th:field="*{plugBoard[1]}">
-			<option value=null></option>
+			<option value=0></option>
 			<option value=1>A</option>		
 			<option value=2>B</option>		
 			<option value=3>C</option>		
@@ -133,7 +134,7 @@
 		
 		<label for="c">C----</label>
 		<select id="c" th:field="*{plugBoard[2]}">
-		<option value=null></option>
+		<option value=0></option>
 			<option value=1>A</option>		
 			<option value=2>B</option>		
 			<option value=3>C</option>		
@@ -164,7 +165,7 @@
 		
 		<label for="d">D----</label>
 		<select id="d" th:field="*{plugBoard[3]}">
-		<option value=null></option>
+		<option value=0></option>
 			<option value=1>A</option>		
 			<option value=2>B</option>		
 			<option value=3>C</option>		
@@ -195,7 +196,7 @@
 		
 		<label for="e">E----</label>
 		<select id="e" th:field="*{plugBoard[4]}">
-		<option value=null></option>
+		<option value=0></option>
 			<option value=1>A</option>		
 			<option value=2>B</option>		
 			<option value=3>C</option>		
@@ -227,7 +228,7 @@
 		
 		<label for="f">F----</label>
 		<select id="f" th:field="*{plugBoard[5]}">
-		<option value=null></option>
+		<option value=0></option>
 			<option value=1>A</option>		
 			<option value=2>B</option>		
 			<option value=3>C</option>		
@@ -258,7 +259,7 @@
 		
 		<label for="g">G----</label>
 		<select id="g" th:field="*{plugBoard[6]}">
-		<option value=null></option>
+		<option value=0></option>
 			<option value=1>A</option>		
 			<option value=2>B</option>		
 			<option value=3>C</option>		
@@ -289,7 +290,7 @@
 		
 		<label for="h">H----</label>
 		<select id="h" th:field="*{plugBoard[7]}">
-		<option value=null></option>
+		<option value=0></option>
 			<option value=1>A</option>		
 			<option value=2>B</option>		
 			<option value=3>C</option>		
@@ -320,7 +321,7 @@
 		
 		<label for="i">I----</label>
 		<select id="i" th:field="*{plugBoard[8]}">
-		<option value=null></option>
+		<option value=0></option>
 			<option value=1>A</option>		
 			<option value=2>B</option>		
 			<option value=3>C</option>		
@@ -351,7 +352,7 @@
 		
 		<label for="j">J----</label>
 		<select id="j" th:field="*{plugBoard[9]}">
-		<option value=null></option>
+		<option value=0></option>
 			<option value=1>A</option>		
 			<option value=2>B</option>		
 			<option value=3>C</option>		
@@ -383,7 +384,7 @@
 		
 		<label for="k">K----</label>
 		<select id="k" th:field="*{plugBoard[10]}">
-		<option value=null></option>
+		<option value=0></option>
 			<option value=1>A</option>		
 			<option value=2>B</option>		
 			<option value=3>C</option>		
@@ -414,7 +415,7 @@
 		
 		<label for="l">L----</label>
 		<select id="l" th:field="*{plugBoard[11]}">
-		<option value=null></option>
+		<option value=0></option>
 			<option value=1>A</option>		
 			<option value=2>B</option>		
 			<option value=3>C</option>		
@@ -445,7 +446,7 @@
 		
 		<label for="m">M----</label>
 		<select id="m" th:field="*{plugBoard[12]}">
-		<option value=null></option>
+		<option value=0></option>
 			<option value=1>A</option>		
 			<option value=2>B</option>		
 			<option value=3>C</option>		
@@ -476,7 +477,7 @@
 		
 		<label for="n">N----</label>
 		<select id="n" th:field="*{plugBoard[13]}">
-		<option value=null></option>
+		<option value=0></option>
 			<option value=1>A</option>		
 			<option value=2>B</option>		
 			<option value=3>C</option>		
@@ -507,7 +508,7 @@
 		
 		<label for="o">O----</label>
 		<select id="o" th:field="*{plugBoard[14]}">
-		<option value=null></option>
+		<option value=0></option>
 			<option value=1>A</option>		
 			<option value=2>B</option>		
 			<option value=3>C</option>		
@@ -539,7 +540,7 @@
 		
 		<label for="p">P----</label>
 		<select id="p" th:field="*{plugBoard[15]}">
-		<option value=null></option>
+		<option value=0></option>
 			<option value=1>A</option>		
 			<option value=2>B</option>		
 			<option value=3>C</option>		
@@ -570,7 +571,7 @@
 		
 		<label for="q">Q----</label>
 		<select id="q" th:field="*{plugBoard[16]}">
-		<option value=null></option>
+		<option value=0></option>
 			<option value=1>A</option>		
 			<option value=2>B</option>		
 			<option value=3>C</option>		
@@ -601,7 +602,7 @@
 		
 		<label for="r">R----</label>
 		<select id="r" th:field="*{plugBoard[17]}">
-		<option value=null></option>
+		<option value=0></option>
 			<option value=1>A</option>		
 			<option value=2>B</option>		
 			<option value=3>C</option>		
@@ -632,7 +633,7 @@
 		
 		<label for="s">S----</label>
 		<select id="s" th:field="*{plugBoard[18]}">
-		<option value=null></option>
+		<option value=0></option>
 			<option value=1>A</option>		
 			<option value=2>B</option>		
 			<option value=3>C</option>		
@@ -663,7 +664,7 @@
 		
 		<label for="t">T----</label>
 		<select id="t" th:field="*{plugBoard[19]}">
-		<option value=null></option>
+		<option value=0></option>
 			<option value=1>A</option>		
 			<option value=2>B</option>		
 			<option value=3>C</option>		
@@ -695,7 +696,7 @@
 		
 		<label for="u">U----</label>
 		<select id="u" th:field="*{plugBoard[20]}">
-		<option value=null></option>
+		<option value=0></option>
 			<option value=1>A</option>		
 			<option value=2>B</option>		
 			<option value=3>C</option>		
@@ -726,7 +727,7 @@
 		
 		<label for="v">V----</label>
 		<select id="v" th:field="*{plugBoard[21]}">
-		<option value=null></option>
+		<option value=0></option>
 			<option value=1>A</option>		
 			<option value=2>B</option>		
 			<option value=3>C</option>		
@@ -757,7 +758,7 @@
 		
 		<label for="w">W----</label>
 		<select id="w" th:field="*{plugBoard[22]}">
-		<option value=null></option>
+		<option value=0></option>
 			<option value=1>A</option>		
 			<option value=2>B</option>		
 			<option value=3>C</option>		
@@ -788,7 +789,7 @@
 		
 		<label for="x">X----</label>
 		<select id="x" th:field="*{plugBoard[23]}">
-		<option value=null></option>
+		<option value=0></option>
 			<option value=1>A</option>		
 			<option value=2>B</option>		
 			<option value=3>C</option>		
@@ -819,7 +820,7 @@
 		
 		<label for="y">Y----</label>
 		<select id="y" th:field="*{plugBoard[24]}">
-		<option value=null></option>
+		<option value=0></option>
 			<option value=1>A</option>		
 			<option value=2>B</option>		
 			<option value=3>C</option>		
@@ -851,7 +852,7 @@
 		
 		<label for="z">Z----</label>
 		<select id="z" th:field="*{plugBoard[25]}">
-		<option value=null></option>
+		<option value=0></option>
 			<option value=1>A</option>		
 			<option value=2>B</option>		
 			<option value=3>C</option>		
@@ -887,6 +888,10 @@
 		<input type="submit" value="change">
 		
 		
+	</form>
+	
+	<form th:action="@{/enigma}" method="GET">
+		<input type="button" value="back">
 	</form>
 	
 </body>

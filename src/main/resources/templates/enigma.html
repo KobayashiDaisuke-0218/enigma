@@ -9,9 +9,11 @@
 	<h1>Enigma simulator</h1>
 	
 	
-	<h3><a th:href="@{/enigmaSetting}">Setting page</a></h3>
-	<p th:if="${checkSetting}" th:text="${checkSetting}" style="color:red"></p>
+	<h3><a th:href="@{/enigma/enigmaSetting}">Setting page</a></h3>
 	
+	<div th:if="${checkSetting}"> 
+		<span th:text="${checkSetting}" style="color:red">aaa</span>
+	</div>
 	
 	<form th:action="@{/cryption}" method="post">
 		<label for="sentence">write here</label><br/>

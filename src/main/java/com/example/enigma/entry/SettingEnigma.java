@@ -18,32 +18,28 @@ import lombok.NoArgsConstructor;
 public class SettingEnigma {
 	
 	
+	
 	@Id
 	@Column(value = "id")
 	private Integer id;
 	
 	//各ルーターの設定
 	@Column(value = "router")
-	private Integer[] router = {1, 2, 3};
+	private Integer[] router = {0, 1, 2};
 	
 	//各ルーターの開始位置
 	@Column(value = "routerStartPoint")
-	private Integer[] routerStatrPoint = {0, 0, 0};
+	private Integer[] routerStartPoint = {0, 0, 0};
 	
 	//反転ルーターの設定
 	@Column(value = "reverseRouter")
-	private Integer reverseRouter = 1;
+	private Integer reverseRouter = 0;
 	
 	//プラグボードの設定
-	//プラグボードAの設定
-	//プラグボードAのi番目はプラグボードBのplugBoardA[i]番目とつながっている
-	@Column(value = "plugBoardA")
-	private Integer[] plugBoardA = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25};
-	
-	//プラグボードBの設定
-	//プラグボードBのi番目はプラグボードAのplugBoardB[i]番目とつながっている
-	@Column(value = "plugBoardB")
-	private Integer[] plugBoardB = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25};
+	//プラグボードのi番目はプラグボードのplugBoard[i]番目とつながっている
+	@Column(value = "plugBoard")
+	private Integer[] plugBoard = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25};
+
 		
 	
 	

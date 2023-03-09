@@ -1,7 +1,5 @@
 package com.example.enigma.controller;
 
-import java.util.Arrays;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +8,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
 
@@ -20,13 +19,12 @@ import com.example.enigma.service.EnigmaService;
 
 @Controller
 @SessionAttributes("settingEnigma")
+@RequestMapping("/enigma")
 public class EnigmaController {
+	
 	
 	@Autowired
 	EnigmaService sercvice;
-	
-
-	
 	
 	//"EncryptionStringForm"でmodelの中に格納
 	@ModelAttribute("encryptionEnigmaForm")
@@ -47,9 +45,8 @@ public class EnigmaController {
 	}
 	
 	
-	@GetMapping("/enigma")
-	public String dafault(Model model) {
-		model.addAttribute(new SettingEnigma());
+	@GetMapping
+	public String defaultPage() {
 		return "enigma"; 
 	}
 	
@@ -60,60 +57,67 @@ public class EnigmaController {
 	
 	
 	
+	
 	@PostMapping("/insert")
 	public String setupSetting(@Validated SettingEnigma settingEnigma, @Validated SettingEnigmaForm setForm, BindingResult bindingResult, Model model, RedirectAttributesModelMap redirect) {
+		
+		if(bindingResult.hasErrors()) {
+			model.addAttribute("setError", "入力値に問題があります");
+			System.out.println("入力");
+			return settingPage();
+		}
 		
 		SettingEnigma setting = new SettingEnigma();
 		if(bindingResult.hasErrors()) {
 			System.out.println("n");
 			return settingPage();
 		}
+		
+		
 		//ルーターの値をセットする
 		Integer[] setRouter = settingRouter(settingEnigma, setForm);
 		
 		//ルーターの値に重複があればエラーメッセージを入力しもう一度設定画面へ進む
 		if(setRouter == null) {
-			redirect.addFlashAttribute("routerNullError", "ルーターの値が重複しています");
-			System.out.println("重複");
-			return "enigmaSetting";
+			model.addAttribute("routerSameError", "ルーターの値が重複しています");
+			return settingPage();
 			
 		} else {
 			setting.setRouter(setRouter);
 		}
 		
 		
-		//開始位置を設定
-		setting.setRouterStatrPoint(settingRouterStartPoint(settingEnigma, setForm));
+		//ルーターの開始位置の設定
+		setting.setRouterStartPoint(setStartPoint(setForm, settingEnigma));
+		
 		
 		
 		//反転ルーターの設定
 		if(setForm.getReverseRouter() != 0) {
-			setting.setReverseRouter(setForm.getReverseRouter());
+			setting.setReverseRouter(setForm.getReverseRouter() - 1);
 		}
 		
 		
-		Integer[] DammyPlugBoardB = makePlugBoard(settingEnigma, setForm);
+		//プラグボードの設定
+		//ダミーの配列を作り現在の入力値を代入する
+		Integer[] DammyPlugBoard = makePlugBoard(settingEnigma, setForm);
 		
-		Integer[] DammyPlugBoardA = null;
-		
-		if(checkPlugBoard(DammyPlugBoardB)) {
-			DammyPlugBoardA = makePlugBoard(DammyPlugBoardB);
-		}
-		
-		if(DammyPlugBoardA != null) {
-			settingEnigma.setPlugBoardA(DammyPlugBoardA);
-			settingEnigma.setPlugBoardB(DammyPlugBoardB);
-		}
-		
-		if(bindingResult.hasErrors()) {
-			redirect.addFlashAttribute("setError", "入力値に問題があります");
-			System.out.println("入力");
-			return "enigmaSetting";
+		//ダミーの配列が問題なければ設定する
+		if(DammyPlugBoard != null) {
+			setting.setPlugBoard(DammyPlugBoard);
 		} else {
+			//配列がおかしければ設定画面へ戻る
+			model.addAttribute("plugError", "プラグボードの入力値が不適切です");
 			model.addAttribute("settingEnigma", setting);
-			redirect.addFlashAttribute("checkSetting", "エニグマの設定を変更しました");
-			return "enigma";
+			System.out.println("s");
+			return "enigma/enigmaSetting";
 		}
+		
+		
+		model.addAttribute("settingEnigma", setting);
+		redirect.addFlashAttribute("checkSetting", "エニグマの設定を変更しました");
+		System.out.println("ok");
+		return defaultPage();
 		
 	}
 	
@@ -124,7 +128,7 @@ public class EnigmaController {
 	 * */
 	private Integer[] settingRouter(SettingEnigma nowSet, SettingEnigmaForm setForm) {		
 		//セッションにセットするための配列
-		Integer[] router = nowSet.getRouter();
+		Integer[] router = nowSet.getRouter().clone();
 		
 		
 		/*
@@ -133,17 +137,17 @@ public class EnigmaController {
 		 * */
 		//ルーター1の入力確認
 		if(setForm.getRouter1() != 0) {
-			router[0] = setForm.getRouter1();
+			router[0] = setForm.getRouter1() - 1;
 		}
 		
 		//ルーター2の入力確認
 		if(setForm.getRouter2() != 0) {
-			router[1] = setForm.getRouter2();
+			router[1] = setForm.getRouter2() - 1;
 		}
 		
 		//ルーター3の入力確認
 		if(setForm.getRouter3() != 0) {
-			router[2] = setForm.getRouter3();
+			router[2] = setForm.getRouter3() - 1;
 		}
 		
 		//ルーターの値が重複していないか確認
@@ -156,58 +160,64 @@ public class EnigmaController {
 		
 	}
 	
-	private Integer[] settingRouterStartPoint(SettingEnigma nowSet, SettingEnigmaForm setForm) {
-		Integer[] startPoint = nowSet.getRouterStatrPoint();
-		
-		if(setForm.getRouterStartPoint1() != 0) {
-			startPoint[0] = setForm.getRouterStartPoint1();
-		}
-		
-		if(setForm.getRouterStartPoint2() != 0) {
-			startPoint[1] = setForm.getRouterStartPoint2();
-		}
-		
-		if(setForm.getRouterStartPoint3() != 0) {
-			startPoint[2] = setForm.getRouterStartPoint3();
-		}
-		
-		return startPoint;
-	}
 	
 	//プラグボードの整合性を確認
+	//文字の対称性が保証されていればtrueを間違っていればfalseを返す
 	private Boolean checkPlugBoard(Integer[] plugBoard) {
-		
+		for(int i = 0; i < 26; i++) {
+			if(plugBoard[i] != i) {
+				return false;
+			}
+		}
+		return true;
 	}
 	
-	//formからプラグボードBを作成する
+	//formからプラグボードを作成する
 	private Integer[] makePlugBoard(SettingEnigma nowSet, SettingEnigmaForm setForm) {
-		Integer[] returnPlug = nowSet.getPlugBoardB();
+		Integer[] returnPlug = nowSet.getPlugBoard();
 		for(int i = 0; i < 26; i++) {
 			if(setForm.getPlugBoard()[i] != 0) {
-				returnPlug[i] = setForm.getPlugBoard()[i];
+				returnPlug[i] = setForm.getPlugBoard()[i] - 1;
 			} else {
-				returnPlug[i] = nowSet.getPlugBoardB()[i];
+				returnPlug[i] = nowSet.getPlugBoard()[i];
 			}
 		}
-		return returnPlug;
+		
+		//プラグボードの整合性を確認し問題なければ配列を返す
+		if(checkPlugBoard(returnPlug)) {
+			return returnPlug;
+		} else {
+			//整合性に問題があればnullを返す
+			return null;
+		}
+		
+	}
+	
+	private Integer[] setStartPoint(SettingEnigmaForm setForm, SettingEnigma nowSet) {
+		Integer[] returnPoint = new Integer[3];
+		if(setForm.getRouterStartPoint1() == null) {
+			returnPoint[0] = nowSet.getRouterStartPoint()[0];
+		} else {
+			returnPoint[0] = setForm.getRouterStartPoint1() - 1;
+		}
+		
+		if(setForm.getRouterStartPoint2() == null) {
+			returnPoint[1] = nowSet.getRouterStartPoint()[1];
+		} else {
+			returnPoint[1] = setForm.getRouterStartPoint2() - 1;
+		}
+		
+		if(setForm.getRouterStartPoint3() == null) {
+			returnPoint[2] = nowSet.getRouterStartPoint()[2];
+		} else {
+			returnPoint[2] = setForm.getRouterStartPoint3() - 1;
+		}
+		
+		return returnPoint;
 	}
 	
 	
-	//プラグボードBを引数にプラグボードAを作成する
-	private Integer[] makePlugBoard(Integer[] plugBoard) {
-		Integer[] damPlugBoard = new Integer[26];
-		
-		Arrays.fill(damPlugBoard, 0);
-		
-		for(int i = 0; i < 26; i++) {
-			if(damPlugBoard[plugBoard[i] - 1] == 0) {
-				damPlugBoard[plugBoard[i] - 1] = i + 1;
-			} else {
-				return null;
-			}
-		}
-		return damPlugBoard;
-	}
+
 	
 	
 	

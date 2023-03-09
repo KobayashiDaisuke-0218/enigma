@@ -42,7 +42,7 @@ public class EnigmaApplication {
 		encrypt1 = encryptionRepository.save(encrypt1);
 		
 		
-		SettingEnigma setting2 = new SettingEnigma(null, new Integer[] {2, 4, 1}, new Integer[] {0, 13, 22}, 2, new Integer[] {0, 10, 8, 22, 16, 7, 4, 14, 19, 23, 24, 2, 11, 18, 1, 5, 12, 17, 15, 13, 20, 6, 3, 21, 9}, new Integer[] {15, 10, 0, 14, 16, 11, 8, 20, 21, 4, 6, 1, 13, 23, 19, 18, 17, 7, 22, 24, 2, 5, 9, 12, 3});
+		SettingEnigma setting2 = new SettingEnigma(null, new Integer[] {2, 4, 1}, new Integer[] {0, 13, 22}, 2, new Integer[] {0, 10, 8, 22, 16, 7, 4, 14, 19, 23, 24, 2, 11, 18, 1, 5, 12, 17, 15, 13, 20, 6, 3, 21, 9});
 		
 		EncryptionString encrypt2 = new EncryptionString(null, "bbbb");
 		

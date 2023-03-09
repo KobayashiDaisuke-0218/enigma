@@ -9,13 +9,25 @@
 
 	<header>setting page</header>
 	
-	<div th:if="${#fields.hasErrors('settingEnigmaForm')}" th:errors="${settingEnigmaForm}"></div>
+	
+	<p th:if="${#fields.hasErrors('settingEnigmaForm')}" th:errors="${settingEnigmaForm}"></p>
 	
 	
-	<form method="post" th:object="${settingEnigmaForm}" th:action="@{/insert}">
+	<form method="post" th:object="${settingEnigmaForm}" th:action="@{/enigma/insert}">
 		
 		<h3>router choice</h3>
-		<label for = "router1">router1</label>
+		
+		<p th:if="${routerSameError}" th:text="${routerSameError}">エラー内容</p>
+		
+		<div th:switch="${settingEnigma.router[0]}">
+			<label>setting router1:</label>
+			<span th:case="0">A</span>
+			<span th:case="1">B</span>
+			<span th:case="2">C</span>
+			<span th:case="3">D</span>
+			<span th:case="4">E</span>
+		</div>
+		<label>change to</label>
 		<select id="router1" th:field="*{router1}">
 			<option value=0></option>
 			<option value=1>A</option>
@@ -23,9 +35,18 @@
 			<option value=3>C</option>
 			<option value=4>D</option>
 			<option value=5>E</option>
-		</select>
+		</select><br/>
+		<br/>
 		
-		<label for = "router2">router2</label>
+		<div th:switch="${settingEnigma.router[1]}">
+			<label>setting router2:</label>
+			<span th:case="0">A</span>
+			<span th:case="1">B</span>
+			<span th:case="2">C</span>
+			<span th:case="3">D</span>
+			<span th:case="4">E</span>
+		</div>
+		<label>change to</label>
 		<select id="router2" th:field="*{router2}">
 			<option value=0></option>
 			<option value=1>A</option>
@@ -33,9 +54,18 @@
 			<option value=3>C</option>
 			<option value=4>D</option>
 			<option value=5>E</option>
-		</select>
+		</select><br/>
+		<br/>
 		
-		<label for = "router3" >router3</label>
+		<div th:switch="${settingEnigma.router[2]}">
+			<label>setting router3:</label>
+			<span th:case="0">A</span>
+			<span th:case="1">B</span>
+			<span th:case="2">C</span>
+			<span th:case="3">D</span>
+			<span th:case="4">E</span>
+		</div>
+		<label>change to</label>
 		<select id="router3" th:field="*{router3}">
 			<option value=0></option>
 			<option value=1>A</option>
@@ -43,19 +73,21 @@
 			<option value=3>C</option>
 			<option value=4>D</option>
 			<option value=5>E</option>
-		</select>
+		</select><br/>
 		<br/>
-		
 		
 		<h3>router start point</h3>
 		
-		<label for="router1StartPoint">router1</label>
+		<p>router1 setting start point: [[${settingEnigma.routerStartPoint[0]} + 1]]</p>
+		<label>change to</label>
 		<input type="number" min="1" max="26" id="router1StartPoint" name="router1StartPoint" th:field="*{routerStartPoint1}"/><br/>
 		
-		<label for="router2StartPoint">router2</label>
+		<p>router1 setting start point: [[${settingEnigma.routerStartPoint[1]} + 1]]</p>
+		<label>change to</label>
 		<input type="number" min="1" max="26" id="router2StartPoint" name="router2StartPoint" th:field="*{routerStartPoint2}"/><br/>
 		
-		<label for="router3StartPoint">router3</label>
+		<p>router1 setting start point: [[${settingEnigma.routerStartPoint[2]} + 1]]</p>
+		<label>change to</label>
 		<input type="number" min="1" max="26" id="router3StartPoint" name="router3StartPoint" th:field="*{routerStartPoint3}"/><br/>
 		
 		
@@ -63,14 +95,21 @@
 		
 		<label for="reverseRouter">reverse router</label>
 		<select id="reverseRouter" name="reverseRouter" th:field="*{reverseRouter}">
+			<option value=0></option>
 			<option value=1>F</option>
 			<option value=2>G</option>
 		</select><br/>
 		
 		<h3>plug board</h3>
 		
-		<label for="a">A----</label>
-		<select id="a" th:field="*{plugBoard[0]}">
+		<div th:if="${plugError}">
+			<p th:text="${plugError}">エラー内容</p>
+		</div>
+		
+		
+		<div>A-----[[${settingEnigmaForm.alphabet[0]}]]</div>
+		<label>change to</label>
+		<select id="a" th:field="*{plugBoard[0]}" th:value="${settingEnigma.plugBoard[0]} + 1">
 			<option value=0></option>
 			<option value=1>A</option>		
 			<option value=2>B</option>		
@@ -100,8 +139,8 @@
 			<option value=26>Z</option>		
 		</select>
 		
-		
-		<label for="b">B----</label>
+		<div>B-----[[${settingEnigmaForm.alphabet[1]}]]</div>
+		<label>change to</label>
 		<select id="b" th:field="*{plugBoard[1]}">
 			<option value=0></option>
 			<option value=1>A</option>		
@@ -132,7 +171,8 @@
 			<option value=26>Z</option>	
 		</select>
 		
-		<label for="c">C----</label>
+		<div>C-----[[${settingEnigmaForm.alphabet[2]}]]</div>
+		<label>change to</label>
 		<select id="c" th:field="*{plugBoard[2]}">
 		<option value=0></option>
 			<option value=1>A</option>		
@@ -163,7 +203,8 @@
 			<option value=26>Z</option>		
 		</select>
 		
-		<label for="d">D----</label>
+		<div>D-----[[${settingEnigmaForm.alphabet[3]}]]</div>
+		<label>change to</label>
 		<select id="d" th:field="*{plugBoard[3]}">
 		<option value=0></option>
 			<option value=1>A</option>		
@@ -194,7 +235,8 @@
 			<option value=26>Z</option>		
 		</select>
 		
-		<label for="e">E----</label>
+		<div>E-----[[${settingEnigmaForm.alphabet[4]}]]</div>
+		<label>change to</label>
 		<select id="e" th:field="*{plugBoard[4]}">
 		<option value=0></option>
 			<option value=1>A</option>		
@@ -226,7 +268,8 @@
 		</select>
 		<br/>
 		
-		<label for="f">F----</label>
+		<div>F-----[[${settingEnigmaForm.alphabet[5]}]]</div>
+		<label>change to</label>
 		<select id="f" th:field="*{plugBoard[5]}">
 		<option value=0></option>
 			<option value=1>A</option>		
@@ -257,7 +300,8 @@
 			<option value=26>Z</option>		
 		</select>
 		
-		<label for="g">G----</label>
+		<div>G-----[[${settingEnigmaForm.alphabet[6]}]]</div>
+		<label>change to</label>
 		<select id="g" th:field="*{plugBoard[6]}">
 		<option value=0></option>
 			<option value=1>A</option>		
@@ -288,7 +332,8 @@
 			<option value=26>Z</option>		
 		</select>
 		
-		<label for="h">H----</label>
+		<div>H-----[[${settingEnigmaForm.alphabet[7]}]]</div>
+		<label>change to</label>
 		<select id="h" th:field="*{plugBoard[7]}">
 		<option value=0></option>
 			<option value=1>A</option>		
@@ -319,7 +364,8 @@
 			<option value=26>Z</option>		
 		</select>
 		
-		<label for="i">I----</label>
+		<div>I-----[[${settingEnigmaForm.alphabet[8]}]]</div>
+		<label>change to</label>
 		<select id="i" th:field="*{plugBoard[8]}">
 		<option value=0></option>
 			<option value=1>A</option>		
@@ -350,7 +396,8 @@
 			<option value=26>Z</option>		
 		</select>
 		
-		<label for="j">J----</label>
+		<div>J-----[[${settingEnigmaForm.alphabet[9]}]]</div>
+		<label>change to</label>
 		<select id="j" th:field="*{plugBoard[9]}">
 		<option value=0></option>
 			<option value=1>A</option>		
@@ -382,7 +429,8 @@
 		</select>
 		<br/>
 		
-		<label for="k">K----</label>
+		<div>K-----[[${settingEnigmaForm.alphabet[10]}]]</div>
+		<label>change to</label>
 		<select id="k" th:field="*{plugBoard[10]}">
 		<option value=0></option>
 			<option value=1>A</option>		
@@ -413,7 +461,8 @@
 			<option value=26>Z</option>		
 		</select>
 		
-		<label for="l">L----</label>
+		<div>L-----[[${settingEnigmaForm.alphabet[11]}]]</div>
+		<label>change to</label>
 		<select id="l" th:field="*{plugBoard[11]}">
 		<option value=0></option>
 			<option value=1>A</option>		
@@ -444,6 +493,8 @@
 			<option value=26>Z</option>		
 		</select>
 		
+		<div>M-----[[${settingEnigmaForm.alphabet[12]}]]</div>
+		<label>change to</label>
 		<label for="m">M----</label>
 		<select id="m" th:field="*{plugBoard[12]}">
 		<option value=0></option>
@@ -475,7 +526,8 @@
 			<option value=26>Z</option>		
 		</select>
 		
-		<label for="n">N----</label>
+		<div>N-----[[${settingEnigmaForm.alphabet[13]}]]</div>
+		<label>change to</label>
 		<select id="n" th:field="*{plugBoard[13]}">
 		<option value=0></option>
 			<option value=1>A</option>		
@@ -506,7 +558,8 @@
 			<option value=26>Z</option>		
 		</select>
 		
-		<label for="o">O----</label>
+		<div>O-----[[${settingEnigmaForm.alphabet[14]}]]</div>
+		<label>change to</label>
 		<select id="o" th:field="*{plugBoard[14]}">
 		<option value=0></option>
 			<option value=1>A</option>		
@@ -538,7 +591,8 @@
 		</select>
 		<br/>
 		
-		<label for="p">P----</label>
+		<div>P-----[[${settingEnigmaForm.alphabet[15]}]]</div>
+		<label>change to</label>
 		<select id="p" th:field="*{plugBoard[15]}">
 		<option value=0></option>
 			<option value=1>A</option>		
@@ -569,7 +623,8 @@
 			<option value=26>Z</option>		
 		</select>
 		
-		<label for="q">Q----</label>
+		<div>Q-----[[${settingEnigmaForm.alphabet[16]}]]</div>
+		<label>change to</label>
 		<select id="q" th:field="*{plugBoard[16]}">
 		<option value=0></option>
 			<option value=1>A</option>		
@@ -600,7 +655,8 @@
 			<option value=26>Z</option>		
 		</select>
 		
-		<label for="r">R----</label>
+		<div>R-----[[${settingEnigmaForm.alphabet[17]}]]</div>
+		<label>change to</label>
 		<select id="r" th:field="*{plugBoard[17]}">
 		<option value=0></option>
 			<option value=1>A</option>		
@@ -631,7 +687,8 @@
 			<option value=26>Z</option>		
 		</select>
 		
-		<label for="s">S----</label>
+		<div>S-----[[${settingEnigmaForm.alphabet[18]}]]</div>
+		<label>change to</label>
 		<select id="s" th:field="*{plugBoard[18]}">
 		<option value=0></option>
 			<option value=1>A</option>		
@@ -662,7 +719,8 @@
 			<option value=26>Z</option>		
 		</select>
 		
-		<label for="t">T----</label>
+		<div>T-----[[${settingEnigmaForm.alphabet[19]}]]</div>
+		<label>change to</label>
 		<select id="t" th:field="*{plugBoard[19]}">
 		<option value=0></option>
 			<option value=1>A</option>		
@@ -694,7 +752,8 @@
 		</select>
 		<br/>
 		
-		<label for="u">U----</label>
+		<div>U-----[[${settingEnigmaForm.alphabet[20]}]]</div>
+		<label>change to</label>
 		<select id="u" th:field="*{plugBoard[20]}">
 		<option value=0></option>
 			<option value=1>A</option>		
@@ -725,7 +784,8 @@
 			<option value=26>Z</option>		
 		</select>
 		
-		<label for="v">V----</label>
+		<div>V-----[[${settingEnigmaForm.alphabet[21]}]]</div>
+		<label>change to</label>
 		<select id="v" th:field="*{plugBoard[21]}">
 		<option value=0></option>
 			<option value=1>A</option>		
@@ -756,7 +816,8 @@
 			<option value=26>Z</option>		
 		</select>
 		
-		<label for="w">W----</label>
+		<div>W-----[[${settingEnigmaForm.alphabet[22]}]]</div>
+		<label>change to</label>
 		<select id="w" th:field="*{plugBoard[22]}">
 		<option value=0></option>
 			<option value=1>A</option>		
@@ -787,7 +848,8 @@
 			<option value=26>Z</option>		
 		</select>
 		
-		<label for="x">X----</label>
+		<div>X-----[[${settingEnigmaForm.alphabet[23]}]]</div>
+		<label>change to</label>
 		<select id="x" th:field="*{plugBoard[23]}">
 		<option value=0></option>
 			<option value=1>A</option>		
@@ -818,7 +880,8 @@
 			<option value=26>Z</option>		
 		</select>
 		
-		<label for="y">Y----</label>
+		<div>Y-----[[${settingEnigmaForm.alphabet[24]}]]</div>
+		<label>change to</label>
 		<select id="y" th:field="*{plugBoard[24]}">
 		<option value=0></option>
 			<option value=1>A</option>		
@@ -850,7 +913,8 @@
 		</select>
 		<br/>
 		
-		<label for="z">Z----</label>
+		<div>Z-----[[${settingEnigmaForm.alphabet[25]}]]</div>
+		<label>change to</label>
 		<select id="z" th:field="*{plugBoard[25]}">
 		<option value=0></option>
 			<option value=1>A</option>		
@@ -858,7 +922,7 @@
 			<option value=3>C</option>		
 			<option value=4>D</option>		
 			<option value=5>E</option>		
-			<option value=6>F</option>		
+			<option value=6>F</option>	
 			<option value=7>G</option>		
 			<option value=8>H</option>		
 			<option value=9>I</option>		
@@ -891,7 +955,7 @@
 	</form>
 	
 	<form th:action="@{/enigma}" method="GET">
-		<input type="button" value="back">
+		<input type="submit" value="back">
 	</form>
 	
 </body>

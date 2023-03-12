@@ -21,5 +21,5 @@ public class EncryptionString {
 	
 	//暗号化された文章
 	//@Column(value = "sentence")
-	private String sentence;
+	private String sentenceE;
 }

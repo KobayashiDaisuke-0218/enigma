@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
 
 import com.example.enigma.entry.SettingEnigma;
@@ -18,6 +19,7 @@ import com.example.enigma.service.EnigmaService;
 
 @Controller
 @RequestMapping("/enigma")
+@SessionAttributes("settingEnigma")
 public class EnigmaController {
 	
 	private final HashMap<Integer, String> alphabet = new HashMap<>(){{put(0, "A"); put(1, "B"); put(2, "C"); put(3, "D");  put(4, "E"); put(5, "F"); put(6, "G"); put(7, "H"); put(8, "I"); put(9, "J"); put(10, "K"); put(11, "L"); put(12, "M"); put(13, "N"); put(14, "O"); put(15, "P"); put(16, "Q"); put(17, "R"); put(18, "S"); put(19, "T"); put(20, "U"); put(21, "V"); put(22, "W"); put(23, "X"); put(24, "Y"); put(25, "Z");}};
@@ -53,6 +55,11 @@ public class EnigmaController {
 		}
 		
 		return alpha;
+	}
+	
+	@ModelAttribute("reverseAlphabet")
+	public String setReevrseAlpha(SettingEnigma nowset) {
+		return this.alphabet.get(nowset.getReverseRouterE() + 5);
 	}
 	
 	@GetMapping
@@ -200,6 +207,7 @@ public class EnigmaController {
 		for(int i = 0; i < 26; i++) {
 			if(setForm.getPlugBoard()[i] != 0) {
 				returnPlug[i] = (setForm.getPlugBoard()[i] - 1);
+				System.out.println(returnPlug[i] + " " + i);
 			}
 		}
 		

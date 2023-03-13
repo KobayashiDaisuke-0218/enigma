@@ -5,9 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.enigma.entry.EncryptionString;
 import com.example.enigma.entry.SettingEnigma;
-import com.example.enigma.repository.EncryptionStringRepository;
 import com.example.enigma.repository.SettingEnigmaRepository;
 
 
@@ -15,15 +13,12 @@ import com.example.enigma.repository.SettingEnigmaRepository;
 public class EnigmaServiceImpl implements EnigmaService {
 	
 	@Autowired
-	EncryptionStringRepository encryptionRepository;
-	
-	@Autowired
 	SettingEnigmaRepository settingRepository;
 	
 	@Override
-	public Iterable<EncryptionString> showAll() {
+	public Iterable<SettingEnigma> showAll() {
 		
-		return encryptionRepository.findAll();
+		return settingRepository.findAll();
 		
 	}
 
@@ -33,13 +28,7 @@ public class EnigmaServiceImpl implements EnigmaService {
 	}
 
 	@Override
-	public Optional<EncryptionString> shoiceOneEncryption(Integer id) {
-		return encryptionRepository.findById(id);
-	}
-
-	@Override
-	public void insert(SettingEnigma set, EncryptionString encry) {
-		encryptionRepository.save(encry);
+	public void insert(SettingEnigma set) {
 		settingRepository.save(set);
 	}
 

@@ -7,21 +7,32 @@
 <body>
 
 	<h2>過去データ一覧</h2>
-	<table border="1" th:unless="${#lists.isEmpty(shoowData)}" style="table-layout: fixed;">
+	<div  th:if="${shoowData}">
+	<table border="1" style="table-layout: fixed;">
 		<tr>
 			<th>ID</th>
-			<th>encrypt sentence</th>
+			<th>router</th>
+			<th>start point</th>
+			<th>reflector</th>
 			<th>decode</th>
 		<tr th:each="obj : ${showData}" align="center">
 			<td th:text="${obj.id}"></td>
-			<td th:text="${obj.sentence}"></td>
+			<td th:text="${obj.router}"></td>
+			<td th:text="${obj.routerStartPoint}"></td>
+			<td th:text="${obj.reverseRouter}"></td>
 			<td>
-				<form method="post" th:action="@{/enigma/decode}">
-					<input type="hidden" value="">
+				<form method="GET" th:action="@{/enigma/decode/{id}(obj.id)}">
+					<input type="submit" value="decode">
 				</form>
 			</td>
+			
+			
 	</table>
+	</div>
 	
-
+	<form th:action="@{/enigma}" method="GET">
+		<input type="submit" value="back">
+	</form>
 </body>
 </html>
+	

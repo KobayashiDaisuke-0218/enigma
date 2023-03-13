@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.example.enigma.entry.SettingEnigma;
 import com.example.enigma.form.EncryptionStringForm;
+import com.example.enigma.service.EnigmaServiceImpl;
 import com.example.enigma.settingData.SettingData;
 
 import jakarta.servlet.http.HttpSession;
@@ -21,6 +23,9 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 @RequestMapping("/encryption")
 public class EncryptionStringController {
+	
+	@Autowired
+	EnigmaServiceImpl service;
 	
 	
 	@ModelAttribute("encriptionStringForm")
@@ -79,10 +84,17 @@ public class EncryptionStringController {
 			bd.append(encryptSentence.get(i) + "\n");
 		}
 		
+		String encrypt = bd.toString();
+
+		
+		//データベースに格納する
+		service.insert(settingEnigma);
+		
 		//文字列をモデルに格納する
-		model.addAttribute("encryptSentence", bd.toString());
+		model.addAttribute("encryptSentence", encrypt);
 		return "enigma";
 	}
+	
 	
 	//入力値が小文字のアルファベットのみか確認
 	private boolean checkString(String line) {
@@ -164,6 +176,8 @@ public class EncryptionStringController {
 		}
 		return returnSentence;
 	}
+	
+	
 	
 	
 

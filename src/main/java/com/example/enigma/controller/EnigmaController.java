@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
 
-import com.example.enigma.entry.EncryptionString;
 import com.example.enigma.entry.SettingEnigma;
 import com.example.enigma.form.EncryptionStringForm;
 import com.example.enigma.form.SettingEnigmaForm;
@@ -236,9 +235,10 @@ public class EnigmaController {
 		return returnPoint;
 	}
 	
+	
 	@GetMapping("check")
 	public String pastData(Model model) {
-		Iterable<EncryptionString> str = service.showAll();
+		Iterable<SettingEnigma> str = service.showAll();
 		model.addAttribute("showData", str);
 		return "pastData";
 	}

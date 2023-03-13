@@ -14,7 +14,7 @@
 		
 		<h3>router choice</h3>
 		
-		<p th:if="${routerSameError}" th:text="${routerSameError}">エラー内容</p>
+		<p th:if="${routerSameError}" th:text="${routerSameError}" style="color:red">エラー内容</p>
 		
 		<div th:switch="${settingEnigma.router[0]}">
 			<label>setting router1:</label>

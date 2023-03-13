@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>list of past data</title>
+</head>
+<body>
+
+	<h2>過去データ一覧</h2>
+	<table border="1" th:unless="${#lists.isEmpty(shoowData)}" style="table-layout: fixed;">
+		<tr>
+			<th>ID</th>
+			<th>encrypt sentence</th>
+			<th>decode</th>
+		<tr th:each="obj : ${showData}" align="center">
+			<td th:text="${obj.id}"></td>
+			<td th:text="${obj.sentence}"></td>
+			<td>
+				<form method="post" th:action="@{/enigma/decode}">
+					<input type="hidden" value="">
+				</form>
+			</td>
+	</table>
+	
+
+</body>
+</html>

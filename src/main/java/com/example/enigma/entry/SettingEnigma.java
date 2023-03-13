@@ -3,6 +3,7 @@ package com.example.enigma.entry;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
+import org.springframework.web.context.annotation.SessionScope;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,6 +16,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "SettingEnigma")
+@SessionScope
 public class SettingEnigma {
 	
 	

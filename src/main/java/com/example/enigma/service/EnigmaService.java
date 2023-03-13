@@ -8,7 +8,7 @@ import com.example.enigma.entry.SettingEnigma;
 public interface EnigmaService {
 	
 	//データベース内の設定を全件取得する//
-	Iterable<SettingEnigma> showAllSetting();
+	Iterable<EncryptionString> showAll();
 	
 	//idをキーに設定を1件取得する
 	Optional<SettingEnigma> choiceOneStting(Integer id);
@@ -17,6 +17,6 @@ public interface EnigmaService {
 	Optional<EncryptionString> shoiceOneEncryption(Integer id);
 	
 	//暗号化された文章と設定を登録する
-	void insert(SettingEnigma set, EncryptionString ency);
+	void insert(SettingEnigma set, EncryptionString encry);
 
 }

@@ -12,10 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
 
+import com.example.enigma.entry.EncryptionString;
 import com.example.enigma.entry.SettingEnigma;
 import com.example.enigma.form.EncryptionStringForm;
 import com.example.enigma.form.SettingEnigmaForm;
 import com.example.enigma.service.EnigmaService;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/enigma")
@@ -26,7 +29,7 @@ public class EnigmaController {
 	
 	
 	@Autowired
-	EnigmaService sercvice;
+	EnigmaService service;
 	
 	//"EncryptionStringForm"でmodelの中に格納
 	@ModelAttribute("encryptionEnigmaForm")
@@ -39,11 +42,6 @@ public class EnigmaController {
 	@ModelAttribute("settingEnigmaForm")
 	public SettingEnigmaForm createSetting() {
 		return new SettingEnigmaForm();
-	}
-	
-	@ModelAttribute("settingEnigma")
-	public SettingEnigma set() {
-		return new SettingEnigma();
 	}
 	
 	@ModelAttribute("alphabet")
@@ -78,7 +76,7 @@ public class EnigmaController {
 	
 	
 	@PostMapping("/insert")
-	public String setupSetting(@ModelAttribute("settingEnigmaForm")SettingEnigmaForm settingEnigmaForm, @ModelAttribute("settingEnigma")SettingEnigma settingEnigma, Model model, RedirectAttributesModelMap redirect) {
+	public String setupSetting(SettingEnigmaForm settingEnigmaForm, SettingEnigma settingEnigma, Model model, RedirectAttributesModelMap redirect, HttpSession session) {
 		
 		//に登録する
 		SettingEnigma setting = new SettingEnigma();
@@ -96,6 +94,7 @@ public class EnigmaController {
 		} else {
 			setting.setRouter(setRouter);
 		}
+		
 		
 		
 		//ルーターの開始位置の設定
@@ -117,22 +116,21 @@ public class EnigmaController {
 		//ダミーの配列が問題なければ設定する
 		if(DammyPlugBoard != null) {
 			setting.setPlugBoardE(DammyPlugBoard);
-			System.out.println("o");
 		} else {
 			//配列がおかしければ設定画面へ戻る
 			model.addAttribute("plugError", "プラグボードの入力値が不適切です");
 			
 			//プラグボード以前の問題ない設定のみセッションで保存
+			session.setAttribute("settingEnigma", setting);
 			model.addAttribute("settingEnigma", setting);
-			System.out.println("s");
 			//設定画面へ戻る
 			return settingPage();
 		}
 		
 		
+		session.setAttribute("settingEnigma", setting);
 		model.addAttribute("settingEnigma", setting);
-		redirect.addFlashAttribute("checkSetting", "エニグマの設定を変更しました");
-		System.out.println("ok");
+		model.addAttribute("checkSetting", "エニグマの設定を変更しました");
 		return defaultPage();
 		
 	}
@@ -198,18 +196,12 @@ public class EnigmaController {
 		//戻り値用の配列に現在設定済みの配列をコピーする
 		Integer[] returnPlug = nowSet.getPlugBoardE();
 		
-		for(int i = 0; i < 26; i++) {
-			System.out.println(returnPlug[i]);
-		}
-		
-		
-		
-		for(int i = 0; i < 26; i++) {
+		for(int i = 0; i < setForm.getPlugBoard().length; i++) {
 			if(setForm.getPlugBoard()[i] != 0) {
-				returnPlug[i] = (setForm.getPlugBoard()[i] - 1);
-				System.out.println(returnPlug[i] + " " + i);
+				returnPlug[i] = setForm.getPlugBoard()[i] - 1;
 			}
 		}
+		
 		
 		//プラグボードの整合性を確認し問題なければ配列を返す
 		if(checkPlugBoard(returnPlug)) {
@@ -242,6 +234,13 @@ public class EnigmaController {
 		}
 		
 		return returnPoint;
+	}
+	
+	@GetMapping("check")
+	public String pastData(Model model) {
+		Iterable<EncryptionString> str = service.showAll();
+		model.addAttribute("showData", str);
+		return "pastData";
 	}
 	
 	

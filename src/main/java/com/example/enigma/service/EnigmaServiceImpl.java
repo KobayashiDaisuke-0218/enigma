@@ -21,9 +21,9 @@ public class EnigmaServiceImpl implements EnigmaService {
 	SettingEnigmaRepository settingRepository;
 	
 	@Override
-	public Iterable<SettingEnigma> showAllSetting() {
+	public Iterable<EncryptionString> showAll() {
 		
-		return settingRepository.findAll();
+		return encryptionRepository.findAll();
 		
 	}
 

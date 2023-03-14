@@ -54,14 +54,14 @@ public class EncryptionStringController {
 					 * 入力文字列に小文字のアルファベット以外があった場合
 					 * エラーメッセージをつけて元の画面へ戻る
 					 * */
-					model.addAttribute("scannerError", "小文字のアルファベットの未入力してください");
+					model.addAttribute("scannerError", "小文字のアルファベットのみ入力してください");
 					return "enigma";
 				}
 			}
 			
 		//入力値にエラーが出れば対応	
 		} catch(InputMismatchException e) {
-			model.addAttribute("scannerError", "小文字のアルファベットの未入力してください");
+			model.addAttribute("scannerError", "小文字のアルファベットのみ入力してください");
 			return "enigmaSetting";
 		}
 		
@@ -139,13 +139,10 @@ public class EncryptionStringController {
 					
 					//1番目のルーターに通して変換
 					alphabetNumber = st.getRouterSetting()[nowSet.getRouter()[0]][(alphabetNumber + nowSet.getRouterStartPoint()[0]+ (count % 26)) % 26] ;
-					System.out.println(alphabetNumber);
 					//2番目のルーターに通して変換
 					alphabetNumber = st.getRouterSetting()[nowSet.getRouter()[1]][(alphabetNumber + nowSet.getRouterStartPoint()[1] + ((count / 26) % 26)) % 26];
-					System.out.println(alphabetNumber);
 					//3番目のルーターに通して変換
 					alphabetNumber = st.getRouterSetting()[nowSet.getRouter()[2]][(alphabetNumber + nowSet.getRouterStartPoint()[2] + (count / (26 * 26))) % 26];
-					System.out.println(alphabetNumber);
 					//反転ルーターに通す
 					alphabetNumber = st.getReverseRouter()[nowSet.getReverseRouterE()][alphabetNumber];
 				
@@ -157,7 +154,6 @@ public class EncryptionStringController {
 					//2番目のルーターに通す
 					alphabetNumber = (Arrays.asList(st.getRouterSetting()[nowSet.getRouter()[1]]).indexOf(alphabetNumber) + 26 - nowSet.getRouterStartPoint()[1] + (26 - (count / 26) % 26)) % 26;
 					//1番目のルーターに通す
-					
 					alphabetNumber = (Arrays.asList(st.getRouterSetting()[nowSet.getRouter()[0]]).indexOf(alphabetNumber) + ((26 - nowSet.getRouterStartPoint()[0] + 26 - count % 26) % 26)) % 26;
 					
 					//プラグボードに通して変換する

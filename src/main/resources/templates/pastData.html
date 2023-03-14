@@ -7,27 +7,36 @@
 <body>
 
 	<h2>過去データ一覧</h2>
-	<div  th:if="${shoowData}">
-	<table border="1" style="table-layout: fixed;">
+	<table th:unless="${#lists.isEmpty(data)}"  style="table-layout: fixed;">
 		<tr>
 			<th>ID</th>
-			<th>router</th>
-			<th>start point</th>
-			<th>reflector</th>
+			<th>router1</th>
+			<th>router2</th>
+			<th>router3</th>
+			<th>start point1</th>
+			<th>start point2</th>
+			<th>start point3</th>
 			<th>decode</th>
-		<tr th:each="obj : ${showData}" align="center">
+		<tr th:each="obj : ${data}" align="center">
 			<td th:text="${obj.id}"></td>
-			<td th:text="${obj.router}"></td>
-			<td th:text="${obj.routerStartPoint}"></td>
-			<td th:text="${obj.reverseRouter}"></td>
+			<td th:text="${obj.router[0]}"></td>
+			<td th:text="${obj.router[1]}"></td>
+			<td th:text="${obj.router[2]}"></td>
+			<td th:text="${obj.routerStartPoint[0]}"></td>
+			<td th:text="${obj.routerStartPoint[1]}"></td>
+			<td th:text="${obj.routerStartPoint[2]}"></td>
 			<td>
-				<form method="GET" th:action="@{/enigma/decode/{id}(obj.id)}">
-					<input type="submit" value="decode">
+				<form method="get" th:action="@{/enigma/{id}(id=${obj.id})}">
+					<input type="submit">
 				</form>
 			</td>
 			
 			
 	</table>
+	
+	
+	<div th:if="${#lists.isEmpty(data)}">
+	<p>No Data</p>
 	</div>
 	
 	<form th:action="@{/enigma}" method="GET">

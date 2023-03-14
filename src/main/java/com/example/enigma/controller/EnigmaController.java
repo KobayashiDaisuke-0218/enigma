@@ -1,12 +1,14 @@
 package com.example.enigma.controller;
 
 import java.util.HashMap;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -180,7 +182,6 @@ public class EnigmaController {
 	private Boolean checkPlugBoard(Integer[] plugBoard) {
 		for(int i = 0; i < 26; i++) {
 			if(plugBoard[plugBoard[i]] != i) {
-				System.out.println(i + " " + plugBoard[i]);
 				return false;
 			}
 		}
@@ -236,14 +237,25 @@ public class EnigmaController {
 	}
 	
 	
-	@GetMapping("check")
+	@GetMapping("/check")
 	public String pastData(Model model) {
 		Iterable<SettingEnigma> str = service.showAll();
-		model.addAttribute("showData", str);
+		model.addAttribute("data", str);
 		return "pastData";
 	}
 	
-	
+	@GetMapping("/{id}")
+	public String getData(Model model, HttpSession session, @PathVariable Integer id) {
+		Optional<SettingEnigma> opt = service.choiceOneStting(id);
+		
+		if(opt.isPresent()) {
+			SettingEnigma set = opt.get();
+			model.addAttribute("settingEnigma", set);
+			session.setAttribute("settingEnigma", set);
+		}
+		
+		return "enigma";
+	}
 
 	
 	

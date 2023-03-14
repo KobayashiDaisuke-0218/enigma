@@ -22,6 +22,10 @@
 		<input type="submit" value="cryption">
 	</form>
 	
+	<div th:if="${scannerError}"> 
+		<span th:text="${scannerError}" style="color:red">設定完了メッセージ</span>
+	</div>
+	
 	<div th:if="${encryptSentence}">
 		<h4>暗号化成功</h4>
 		<p th:text="${encryptSentence}">暗号化文字列</p>

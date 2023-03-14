@@ -25,19 +25,14 @@ public class EnigmaApplication {
 	
 	
 	private void execute() {
+		
+		setup();
+		showAll();
+		
+		
 	}
 	
 	private void setup() {
-		SettingEnigma setting1 = new SettingEnigma();
-		
-		
-		setting1 = settingRepository.save(setting1);
-		
-		
-		
-		SettingEnigma setting2 = new SettingEnigma(null, new Integer[] {2, 4, 1}, new Integer[] {0, 13, 22}, 2, new Integer[] {0, 10, 8, 22, 16, 7, 4, 14, 19, 23, 24, 2, 11, 18, 1, 5, 12, 17, 15, 13, 20, 6, 3, 21, 9});
-		
-		setting2 = settingRepository.save(setting2);
 		
 		
 		System.out.println("登録完了");
